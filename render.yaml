@@ -1,8 +1,6 @@
 # Simba Fitness - Full Stack Deployment Blueprint
 services:
-  # =========================
   # BACKEND (EXPRESS API)
-  # =========================
   - type: web
     name: simba-fitness-backend
     env: node
@@ -19,11 +17,9 @@ services:
       - key: JWT_SECRET
         sync: false
 
-  # =========================
+staticSites:
   # FRONTEND (NEXT.JS STATIC)
-  # =========================
-  - type: static
-    name: simba-fitness-frontend
+  - name: simba-fitness-frontend
     rootDir: client
     buildCommand: npm install && npm run build
     staticPublishPath: out
