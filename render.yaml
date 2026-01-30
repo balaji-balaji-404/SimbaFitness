@@ -1,33 +1,32 @@
-/**
- * SIMBA FITNESS - FULL STACK DEPLOYMENT GUIDE
- * 
- * To deploy this MERN app "together", we will use Render.com Blueprint.
- * This specifies how to build both the Frontend (Next.js) and Backend (Express).
- */
-
+# Simba Fitness - Full Stack Deployment Blueprint
 services:
-  # 1. THE BACKEND (EXPRESS)
+  # =========================
+  # BACKEND (EXPRESS API)
+  # =========================
   - type: web
     name: simba-fitness-backend
     env: node
-    buildCommand: npm install && cd server && npm install
-    startCommand: cd server && npm start
+    rootDir: server
+    buildCommand: npm install
+    startCommand: npm start
     envVars:
       - key: NODE_VERSION
-        value: 18.0.0
+        value: 18
       - key: PORT
-        value: 5001
+        value: 5000
       - key: MONGO_URI
-        sync: false # Set this in Render Dashboard
+        sync: false
       - key: JWT_SECRET
-        sync: false # Set this in Render Dashboard
+        sync: false
 
-  # 2. THE FRONTEND (NEXT.S)
-  - type: web
+  # =========================
+  # FRONTEND (NEXT.JS STATIC)
+  # =========================
+  - type: static
     name: simba-fitness-frontend
-    env: static # Or 'web' for SSR
-    buildCommand: cd client && npm install && npm run build
-    publishPath: client/out # Adjust if using 'next export' or .next
+    rootDir: client
+    buildCommand: npm install && npm run build
+    staticPublishPath: out
     envVars:
       - key: NEXT_PUBLIC_API_URL
         value: https://simba-fitness-backend.onrender.com/api
