@@ -1,0 +1,19 @@
+# Dependencies
+node_modules
+.next
+dist
+build
+*.log
+
+# Environment variables
+.env
+.env.local
+
+# IDE & OS files
+.DS_Store
+.vscode
+.idea
+
+# Local data
+assets/
+package-lock.json
