@@ -7,6 +7,7 @@ import {
     PieChart, Pie, Cell, Legend, AreaChart, Area
 } from "recharts";
 import { DollarSign, TrendingUp, Users, AlertCircle, ArrowUpRight, Target } from "lucide-react";
+import { API_URL } from "@/lib/constants";
 
 interface RevenueData {
     totalRevenue: number;
@@ -24,7 +25,7 @@ const RevenueDashboard = () => {
         const fetchData = async () => {
             try {
                 const userInfo = JSON.parse(localStorage.getItem("userInfo") || "{}");
-                const res = await fetch("http://localhost:5001/api/revenue", {
+                const res = await fetch(`${API_URL}/revenue`, {
                     headers: {
                         Authorization: `Bearer ${userInfo.token}`
                     }

@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { motion } from "framer-motion";
+import { API_URL } from "@/lib/constants";
 
 const Contact = () => {
     const [formData, setFormData] = useState({
@@ -17,7 +18,7 @@ const Contact = () => {
         setStatus("loading");
 
         try {
-            const res = await fetch("http://localhost:5001/api/enquiries", {
+            const res = await fetch(`${API_URL}/enquiries`, {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(formData),

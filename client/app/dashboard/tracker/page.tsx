@@ -7,6 +7,7 @@ import {
     AreaChart, Area
 } from "recharts";
 import { Activity, Weight, Flame, ChevronRight, Plus, History } from "lucide-react";
+import { API_URL } from "@/lib/constants";
 
 const TrackerPage = () => {
     const [logs, setLogs] = useState<any[]>([]);
@@ -19,7 +20,7 @@ const TrackerPage = () => {
         const fetchLogs = async () => {
             try {
                 const userInfo = JSON.parse(localStorage.getItem("userInfo") || "{}");
-                const res = await fetch("http://localhost:5001/api/calories/my-logs", {
+                const res = await fetch(`${API_URL}/calories/my-logs`, {
                     headers: { Authorization: `Bearer ${userInfo.token}` }
                 });
                 const data = await res.json();
@@ -44,7 +45,7 @@ const TrackerPage = () => {
         // Post to backend (assumes existing endpoint works, just adding weight)
         try {
             const userInfo = JSON.parse(localStorage.getItem("userInfo") || "{}");
-            await fetch("http://localhost:5001/api/calories", {
+            await fetch(`${API_URL}/calories`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",

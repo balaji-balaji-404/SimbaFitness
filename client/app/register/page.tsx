@@ -4,6 +4,7 @@ import { useState } from "react";
 import { useAuth } from "@/context/AuthContext";
 import Link from "next/link";
 import { motion } from "framer-motion";
+import { API_URL } from "@/lib/constants";
 
 const Register = () => {
     const [formData, setFormData] = useState({
@@ -23,7 +24,7 @@ const Register = () => {
         setIsLoading(true);
 
         try {
-            const res = await fetch("http://localhost:5001/api/users", {
+            const res = await fetch(`${API_URL}/users`, {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(formData),
